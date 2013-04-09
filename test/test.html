@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WebP Test</title>
+</head>
+<body>
+
+  <img src="img.webp" alt="" id="img" />
+
+  <script src="../lib/webp.js"></script>
+  <script>
+    var t1 = +new Date();
+    WebP.isSupport(function(isSupport) {
+      console.log(isSupport + " " + (new Date() - t1) + "ms");
+      var img = new Image();
+      img.src = "img.webp";
+      img.onload = img.onerror = function() {
+        var actualIsSupport = img.width === 146;
+        var isPass = actualIsSupport === isSupport;
+        console.log("isPass: " + isPass);
+      };
+
+      var t2 = +new Date();
+      WebP.isSupport(function(isSupport) {
+        console.log(isSupport + " " + (new Date() - t2) + "ms");
+      });
+      WebP.isSupport(function(isSupport) {
+        console.log(isSupport + " " + (new Date() - t2) + "ms");
+      });
+      WebP.isSupport(function(isSupport) {
+        console.log(isSupport + " " + (new Date() - t2) + "ms");
+      });
+      WebP.isSupport(function(isSupport) {
+        console.log(isSupport + " " + (new Date() - t2) + "ms");
+      });
+    });
+  </script>
+  
+</body>
+</html>
